@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# Ignore everything in demo-playground
+/demo-playground/*
+
 # User-specific files
 *.rsuser
 *.suo
