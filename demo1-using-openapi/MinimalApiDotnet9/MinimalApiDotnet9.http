@@ -1,0 +1,6 @@
+@MinimalApiDotnet9_HostAddress = http://localhost:5170
+
+GET {{MinimalApiDotnet9_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
