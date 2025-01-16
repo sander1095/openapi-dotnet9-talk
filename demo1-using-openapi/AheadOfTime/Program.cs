@@ -1,11 +1,20 @@
 using System.Text.Json.Serialization;
 
+using Microsoft.AspNetCore.Routing.Constraints;
+
+using Scalar.AspNetCore;
+
 var builder = WebApplication.CreateSlimBuilder(args);
 
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
     options.SerializerOptions.TypeInfoResolverChain.Insert(0, AppJsonSerializerContext.Default);
 });
+
+// Necessary for Scalar when using SlimBuilder for AOT: https://github.com/scalar/scalar/issues/4490
+builder.Services.Configure<RouteOptions>(options => options.SetParameterPolicy<RegexInlineRouteConstraint>("regex"));
+
+builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
@@ -23,6 +32,9 @@ todosApi.MapGet("/{id}", (int id) =>
     sampleTodos.FirstOrDefault(a => a.Id == id) is { } todo
         ? Results.Ok(todo)
         : Results.NotFound());
+
+app.MapOpenApi();
+app.MapScalarApiReference();
 
 app.Run();
 
