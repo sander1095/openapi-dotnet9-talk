@@ -1,11 +1,20 @@
-var builder = WebApplication.CreateBuilder(args);
+// https://learn.microsoft.com/en-us/aspnet/core/fundamentals/openapi/aspnetcore-openapi?view=aspnetcore-9.0&tabs=visual-studio#customizing-run-time-behavior-during-build-time-document-generation
 
-// TODO: Set up and explain the customization options in the csproj
-// TODO: Set up a different pipeline based on the environment
+using System.Reflection;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+// This checks if we're currently generating an openapi spec at build-time
+if (Assembly.GetEntryAssembly()?.GetName().Name != "GetDocument.Insider")
+{
+    // We can add services here ONLY if we're not generating an OpenAPI spec at build-time.
+    // This is useful to prevent specific services that would hinder the build-time generation.
+    // For example, services that depend on cloud, database or other services that may not be available.
+}
 
 var app = builder.Build();
 
