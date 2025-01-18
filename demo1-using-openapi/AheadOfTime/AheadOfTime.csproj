@@ -13,4 +13,8 @@
     <PackageReference Include="Scalar.AspNetCore" Version="2.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ApiModels\ApiModels.csproj" />
+  </ItemGroup>
+
 </Project>

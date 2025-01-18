@@ -5,7 +5,7 @@
     {
       "file": "demo1-using-openapi/OpenApiInDotnet8/OpenApiInDotnet8.csproj",
       "description": "In .NET 8, the default OpenAPI library was `Swashbuckle.AspNetCore`",
-      "line": 10
+      "line": 12
     },
     {
       "file": "demo1-using-openapi/OpenApiInDotnet8/Program.cs",
@@ -106,48 +106,6 @@
       "description": "This will be the OpenAPI spec that's generated for the list of talks. A GET endpoint for api/talks that returns a 200 OK. There's multiple content types by default, but you can see it will return a list of the TalkModel schema."
     },
     {
-      "file": "demo1-using-openapi/ControllersDotnet9/Controllers/TalksController.cs",
-      "selection": {
-        "start": {
-          "line": 39,
-          "character": 1
-        },
-        "end": {
-          "line": 45,
-          "character": 121
-        }
-      },
-      "description": ""
-    },
-    {
-      "file": "demo1-using-openapi/ControllersDotnet9/openapi.json",
-      "selection": {
-        "start": {
-          "line": 7,
-          "character": 1
-        },
-        "end": {
-          "line": 11,
-          "character": 7
-        }
-      },
-      "description": "This is the OpenAPI file generated in .NET 9. It's very similar, so let's not nitpick the very small changes. Instead, let's look atsome relevant ones!\r\n\r\nHere you see that .NET 9 adds a property, which is `servers`. This is a list of servers this API runs on. For example, local, test and prod. In this case, it adds my localhost."
-    },
-    {
-      "file": "demo1-using-openapi/ControllersDotnet9/openapi.json",
-      "selection": {
-        "start": {
-          "line": 298,
-          "character": 1
-        },
-        "end": {
-          "line": 327,
-          "character": 10
-        }
-      },
-      "description": "And this is the `TalkModel`. You can see that this does not make any mistakes with nullability."
-    },
-    {
       "file": "demo1-using-openapi/OpenApiInDotnet8/openapi.json",
       "selection": {
         "start": {
@@ -246,6 +204,34 @@
       "description": "The TalksController is _almost_ the same as the .NET 8 variant.\r\n\r\nBEcause .NET 9 does not support XML Comments, we will need to use `EndpointSummary` and `Description` on the parameter to set up the relevant info for OpenAPI."
     },
     {
+      "file": "demo1-using-openapi/ControllersDotnet9/openapi.json",
+      "selection": {
+        "start": {
+          "line": 7,
+          "character": 1
+        },
+        "end": {
+          "line": 11,
+          "character": 7
+        }
+      },
+      "description": "This is the OpenAPI file generated in .NET 9. It's very similar, so let's not nitpick the very small changes. Instead, let's look atsome relevant ones!\r\n\r\nHere you see that .NET 9 adds a property, which is `servers`. This is a list of servers this API runs on. For example, local, test and prod. In this case, it adds my localhost."
+    },
+    {
+      "file": "demo1-using-openapi/ControllersDotnet9/openapi.json",
+      "selection": {
+        "start": {
+          "line": 298,
+          "character": 1
+        },
+        "end": {
+          "line": 327,
+          "character": 10
+        }
+      },
+      "description": "And this is the `TalkModel`. You can see that this does not make any mistakes with nullability."
+    },
+    {
       "file": "demo1-using-openapi/ControllersDotnet9/Program.cs",
       "description": "Let's go and run this demo and take a quick look at Scalar!\r\n\r\n**DO**\r\n\r\n- Visit `openapi/v1.json` for the OpenAPI endpoint.\r\n  - This is different compared to SwaggerUI, which was `swagger/v1/swagger.json`\r\n- Visit `/scalar` and show off the UI, API client code and test a request.",
       "line": 24,
@@ -315,6 +301,67 @@
         }
       },
       "description": "This endpoint returns multiple statuses. To deal with this, we use `Results`, which is kind of a union type, to indicate that this either returns an `OK` with a `TalkModel` or a `NotFound`.\r\n\r\nThe create talk endpoint is very similar, so I'll skip that one for now to save time."
+    },
+    {
+      "file": "demo1-using-openapi/AheadOfTime/AheadOfTime.csproj",
+      "description": "This is roughly the same Minimal API project, but now in AOT mode!\r\n\r\nThis is generated with `dotnet new webapiaot`. By setting PublishAOT to true, it will build the app for AOT during publish, and enable dynamic code analysis.",
+      "line": 8
+    },
+    {
+      "file": "demo1-using-openapi/AheadOfTime/Program.cs",
+      "selection": {
+        "start": {
+          "line": 11,
+          "character": 1
+        },
+        "end": {
+          "line": 14,
+          "character": 46
+        }
+      },
+      "description": "Now we're in the `Program.cs` of the Minimal API AOT project.\r\n\r\nFirst, you'll see we're using `CreateSlimBuilder`. This adds a limited amount of services to the web application, and strips things that aren't supported for AOT. This also creates a smaller binary!\r\n\r\nBelow, you'll see a warning! I'm trying to get a list of all types in the app, but this MIGHT cause issues in AOT mode because some types might be stripped. This is just an example to show off the scanning.\r\n\r\nYou can find more info about AOT in the docs."
+    },
+    {
+      "file": "demo1-using-openapi/AheadOfTime/Program.cs",
+      "selection": {
+        "start": {
+          "line": 16,
+          "character": 1
+        },
+        "end": {
+          "line": 22,
+          "character": 118
+        }
+      },
+      "description": "Next, we need to set up JSON serialization to use source generators instead of reflection. More on this later.\r\n\r\nBelow that, we'll see some configuration for Scalar in AOT mode. This issue has been fixed already, and I'm waiting for a package upgrade to get this code removed."
+    },
+    {
+      "file": "demo1-using-openapi/AheadOfTime/Program.cs",
+      "selection": {
+        "start": {
+          "line": 24,
+          "character": 1
+        },
+        "end": {
+          "line": 30,
+          "character": 24
+        }
+      },
+      "description": "There's not a lot to show off regarding  OpenAPI and Scalar. It just works. We're creating the same routes as in the last project."
+    },
+    {
+      "file": "demo1-using-openapi/AheadOfTime/Program.cs",
+      "selection": {
+        "start": {
+          "line": 33,
+          "character": 1
+        },
+        "end": {
+          "line": 42,
+          "character": 1
+        }
+      },
+      "description": "Finally, we need to provide a list of types that the project needs to source generate JSON serializer/deserializers for."
     }
   ]
 }

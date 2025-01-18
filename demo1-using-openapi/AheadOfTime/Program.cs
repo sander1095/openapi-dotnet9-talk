@@ -1,10 +1,17 @@
 using System.Text.Json.Serialization;
 
+using AheadOfTime;
+
+using ApiModels;
+
 using Microsoft.AspNetCore.Routing.Constraints;
 
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateSlimBuilder(args);
+
+// In AOT projects, Reflection has quite limited support:
+_ = System.Reflection.Assembly.GetExecutingAssembly().GetTypes();
 
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
@@ -18,29 +25,16 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-var sampleTodos = new Todo[] {
-    new(1, "Walk the dog"),
-    new(2, "Do the dishes", DateOnly.FromDateTime(DateTime.Now)),
-    new(3, "Do the laundry", DateOnly.FromDateTime(DateTime.Now.AddDays(1))),
-    new(4, "Clean the bathroom"),
-    new(5, "Clean the car", DateOnly.FromDateTime(DateTime.Now.AddDays(2)))
-};
-
-var todosApi = app.MapGroup("/todos");
-todosApi.MapGet("/", () => sampleTodos);
-todosApi.MapGet("/{id}", (int id) =>
-    sampleTodos.FirstOrDefault(a => a.Id == id) is { } todo
-        ? Results.Ok(todo)
-        : Results.NotFound());
-
 app.MapOpenApi();
 app.MapScalarApiReference();
+app.MapTalkEndpoints();
 
 app.Run();
 
-public record Todo(int Id, string? Title, DateOnly? DueBy = null, bool IsComplete = false);
-
-[JsonSerializable(typeof(Todo[]))]
+[JsonSerializable(typeof(TalkModel))]
+[JsonSerializable(typeof(CreateTalkModel))]
+[JsonSerializable(typeof(List<TalkModel>))]
+[JsonSerializable(typeof(HttpValidationProblemDetails))]
 internal partial class AppJsonSerializerContext : JsonSerializerContext
 {
 
