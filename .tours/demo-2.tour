@@ -118,7 +118,7 @@
           "character": 1
         }
       },
-      "description": "Finally, we can transform schemas. A schema is a model.\r\n\r\nNormally, if the Json Type Info would hold a decimal, OpenAPI would map it to a double. In this case, we're forcing it to use OpenAPI's decimal format, instead."
+      "description": "Finally, we can transform schemas. A schema is a model.\r\n\r\nNormally, if the Json Type Info would hold a decimal, OpenAPI would map it to a double. It does this because there is no \"official\" better format. \r\n\r\nThis transformer changes the `format` to `decimal`, instead. This might help OpenAPI tooling like API client generators to generate C# decimals."
     }
   ]
 }
