@@ -1,39 +1,59 @@
+
+using CustomizingOpenApi;
+
+using Microsoft.AspNetCore.OpenApi;
+using Microsoft.OpenApi;
+using Microsoft.OpenApi.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddOpenApi(x =>
+{
+    // Change the OpenAPI version..
+    x.OpenApiVersion = OpenApiSpecVersion.OpenApi2_0;
+    x.AddDocumentTransformer((document, context, cancellationToken) =>
+    {
+        document.Info.Contact = new OpenApiContact
+        {
+            Name = "Sander ten Brinke",
+            Email = "s.tenbrinke2@gmail.com",
+            Url = new Uri("https://stenbrinke.nl")
+        };
+
+        return Task.CompletedTask;
+    });
+
+    x.AddOperationTransformer<OpenApiInternalServerErrorOperationTransformer>();
+
+    x.AddSchemaTransformer(new OpenApiDoubleToDecimalSchemaTransformer());
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+app.MapOpenApi();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+app.MapWeatherEndpoints();
 
 app.Run();
 
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+
+public class OpenApiInternalServerErrorOperationTransformer : IOpenApiOperationTransformer
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    public Task TransformAsync(OpenApiOperation operation, OpenApiOperationTransformerContext context, CancellationToken cancellationToken)
+    {
+        operation.Responses.Add("500", new OpenApiResponse { Description = "Internal server error" });
+        return Task.CompletedTask;
+    }
+}
+
+public class OpenApiDoubleToDecimalSchemaTransformer : IOpenApiSchemaTransformer
+{
+    public Task TransformAsync(OpenApiSchema schema, OpenApiSchemaTransformerContext context, CancellationToken cancellationToken)
+    {
+        if (context.JsonTypeInfo.Type == typeof(decimal))
+        {
+            schema.Format = "decimal";
+        }
+        return Task.CompletedTask;
+    }
 }
