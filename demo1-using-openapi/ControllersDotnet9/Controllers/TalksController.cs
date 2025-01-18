@@ -1,4 +1,6 @@
-﻿using ApiModels;
+﻿using System.ComponentModel;
+
+using ApiModels;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,17 +35,14 @@ public class TalksController : ControllerBase
         return Ok(talk);
     }
 
-    /// <summary>
-    /// Creates a talk
-    /// </summary>
-    /// <param name="requestBody">The requestbody for the talk</param>
-    /// <returns>The created talk</returns>
+
+    [EndpointSummary("Creates a talk")]
     [HttpPost(Name = "Talks_CreateTalk")]
     [ProducesResponseType<TalkModel>(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     [ProducesDefaultResponseType]
-    public ActionResult<TalkModel> CreateTalk(CreateTalkModel requestBody)
+    public ActionResult<TalkModel> CreateTalk([Description("The requestbody for the talk")] CreateTalkModel requestBody)
     {
         // 400 bad request validation is done automatically thanks to [ApiController]
         if (SampleTalks.Talks.Any(x => x.Title == requestBody.Title))
