@@ -10,7 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi(x =>
 {
     // Change the OpenAPI version..
-    x.OpenApiVersion = OpenApiSpecVersion.OpenApi2_0;
+    x.OpenApiVersion = OpenApiSpecVersion.OpenApi3_0;
+
     x.AddDocumentTransformer((document, context, cancellationToken) =>
     {
         document.Info.Contact = new OpenApiContact
