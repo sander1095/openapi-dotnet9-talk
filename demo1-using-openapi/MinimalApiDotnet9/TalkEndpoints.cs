@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 using ApiModels;
 
@@ -19,7 +20,7 @@ public static class TalkEndpoints
 
         api.MapGet("/", GetTalks).WithName("Talks_GetTalks");
         api.MapGet("/{id:int:min(1)}", GetTalk).WithName("Talks_GetTalk");
-        api.MapPost("/", CreateTalk).WithName("Talks_CreateTalk");
+        api.MapPost("/", CreateTalk).WithName("Talks_CreateTalk").WithSummary("Creates a talk");
 
         return app;
     }
@@ -38,7 +39,7 @@ public static class TalkEndpoints
             TypedResults.Ok(talk);
     }
 
-    public static Results<Ok<TalkModel>, ValidationProblem, Conflict> CreateTalk(CreateTalkModel requestBody)
+    public static Results<Ok<TalkModel>, ValidationProblem, Conflict> CreateTalk([Description("The requestbody for the talk")] CreateTalkModel requestBody)
     {
         // Note: This endpoint contains no request validation for brevity reasons, as Minimal API doesn't support this out of the box yet, unlike controllers!
         if (SampleTalks.Talks.Any(x => x.Title == requestBody.Title))

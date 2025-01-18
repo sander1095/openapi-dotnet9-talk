@@ -273,6 +273,48 @@
         }
       },
       "description": "Now let's look at Minimal API endpoints with OpenAPI support!\r\n\r\nThis is the Program.cs file. I have built endpoints that are very similar to the controllers I showed before. In this case, we're calling `MapTalkEndpoints`."
+    },
+    {
+      "file": "demo1-using-openapi/MinimalApiDotnet9/TalkEndpoints.cs",
+      "selection": {
+        "start": {
+          "line": 17,
+          "character": 1
+        },
+        "end": {
+          "line": 26,
+          "character": 6
+        }
+      },
+      "description": "We're setting up our endpoints and methods that will execute the request here.\r\n\r\n- `WithName` sets the operationId.\r\n- `WithSummary` sets the summary."
+    },
+    {
+      "file": "demo1-using-openapi/MinimalApiDotnet9/TalkEndpoints.cs",
+      "selection": {
+        "start": {
+          "line": 28,
+          "character": 1
+        },
+        "end": {
+          "line": 31,
+          "character": 6
+        }
+      },
+      "description": "This method uses `TypedResults` combined with the `Ok<List<TalkModel>>` to provide method metadata for OpenAPI so it understands what is being returned.\r\n\r\nYou CAN also use other approaches like `ProducesResponseType` and extension methods. We'll talk more about this at the end of the talk. This is all about preference, and for this demo, this requires the least code and works well enough!"
+    },
+    {
+      "file": "demo1-using-openapi/MinimalApiDotnet9/TalkEndpoints.cs",
+      "selection": {
+        "start": {
+          "line": 33,
+          "character": 1
+        },
+        "end": {
+          "line": 40,
+          "character": 6
+        }
+      },
+      "description": "This endpoint returns multiple statuses. To deal with this, we use `Results`, which is kind of a union type, to indicate that this either returns an `OK` with a `TalkModel` or a `NotFound`.\r\n\r\nThe create talk endpoint is very similar, so I'll skip that one for now to save time."
     }
   ]
 }
