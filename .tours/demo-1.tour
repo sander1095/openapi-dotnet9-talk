@@ -159,7 +159,7 @@
           "character": 8
         }
       },
-      "description": "And this is the talk model, which looks very similar to the CreateTalkModel, so no need to cover this right now.\r\n\r\nYiu can see the required properties, and then each property being defined with a type, description and nullability.\r\n\r\nFun fact: You can see Swashbuckle making a small \"mistake\". It sets `Title` up as nullable, even though we used C#'s `required` keyword AND marked it as `string`, which is non-nullable. I believe NSwag does do this correctly 😉."
+      "description": "And this is the talk model, which looks very similar to the CreateTalkModel, so no need to cover this right now.\r\n\r\nYiu can see the required properties, and then each property being defined with a type, description and nullability.\r\n\r\nFun fact: You can see Swashbuckle making a small \"mistake\". It sets `Title` up as nullable, even though we used C#'s `required` keyword AND marked it as `string`, which is non-nullable. I believe NSwag does do this correctly 😉.\r\n\r\n**DO:**\r\n\r\n- Go to http://localhost:5300/swagger to show off SwaggerUI quickly"
     },
     {
       "file": "demo1-using-openapi/ControllersDotnet9/ControllersDotnet9.csproj",

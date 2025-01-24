@@ -43,7 +43,7 @@
           "character": 2
         }
       },
-      "description": "Finally, this is optional.\r\n\r\nLike I said in the slides, this doesn't _purely_ generate the spec at build-time. It actually executes the entrypoint of your app with a mock server. \r\n\r\nIn some cases, you might want to prevent specific code paths being executed, like databases/configuration which might not be available or cause changes.\r\n\r\nWe can do this with the highlighted line of code. Any code in this block will only executed when we're NOT generating an OpenAPI spec at build time."
+      "description": "Finally, this is optional.\r\n\r\nLike I said in the slides, this doesn't _purely_ generate the spec at build-time. It actually executes the entrypoint of your app with a mock server. \r\n\r\nIn some cases, you might want to prevent specific code paths being executed, like databases/configuration which might not be available or cause changes.\r\n\r\nWe can do this with the highlighted line of code. Any code in this block will only executed when we're NOT generating an OpenAPI spec at build time.\r\n\r\n\r\n**DO:**\r\n\r\n- Run `dotnet build` to generate the file\r\n  - If no file appears in this directory, run `dotnet clean` first"
     },
     {
       "file": "demo2-customizing-and-build-time-openapi/BuildTimeOpenApiDocumentGeneration/openapi-spec.json",
@@ -119,6 +119,48 @@
         }
       },
       "description": "Finally, we can transform schemas. A schema is a model.\r\n\r\nNormally, if the Json Type Info would hold a decimal, OpenAPI would map it to a double. It does this because there is no \"official\" better format. \r\n\r\nThis transformer changes the `format` to `decimal`, instead. This might help OpenAPI tooling like API client generators to generate C# decimals."
+    },
+    {
+      "file": "demo2-customizing-and-build-time-openapi/CustomizingOpenApi/openapi.json",
+      "selection": {
+        "start": {
+          "line": 3,
+          "character": 5
+        },
+        "end": {
+          "line": 9,
+          "character": 9
+        }
+      },
+      "description": "Here you see the changes for the OpenAPI metadata"
+    },
+    {
+      "file": "demo2-customizing-and-build-time-openapi/CustomizingOpenApi/openapi.json",
+      "selection": {
+        "start": {
+          "line": 38,
+          "character": 1
+        },
+        "end": {
+          "line": 40,
+          "character": 14
+        }
+      },
+      "description": "You also see an 500 return code added to the operation"
+    },
+    {
+      "file": "demo2-customizing-and-build-time-openapi/CustomizingOpenApi/openapi.json",
+      "selection": {
+        "start": {
+          "line": 68,
+          "character": 1
+        },
+        "end": {
+          "line": 71,
+          "character": 15
+        }
+      },
+      "description": "And finally, the number is stored as decimal"
     }
   ]
 }
