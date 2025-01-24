@@ -15,8 +15,8 @@
           "character": 1
         },
         "end": {
-          "line": 24,
-          "character": 2
+          "line": 21,
+          "character": 21
         }
       },
       "description": "Adding OpenAPI support to ASP.NET Core is quite simple!\r\n\r\nWe need to add some services to the DI container and then map OpenAPI and SwaggerUI endpoints."
@@ -179,12 +179,12 @@
       "file": "demo1-using-openapi/ControllersDotnet9/Program.cs",
       "selection": {
         "start": {
-          "line": 7,
+          "line": 8,
           "character": 1
         },
         "end": {
-          "line": 18,
-          "character": 2
+          "line": 15,
+          "character": 64
         }
       },
       "description": "Adding OpenAPI in .NET 9 is still very easy!"
@@ -237,12 +237,12 @@
       "line": 24,
       "selection": {
         "start": {
-          "line": 1,
+          "line": 8,
           "character": 1
         },
         "end": {
-          "line": 7,
-          "character": 75
+          "line": 21,
+          "character": 12
         }
       }
     },
@@ -250,7 +250,7 @@
       "file": "demo1-using-openapi/MinimalApiDotnet9/Program.cs",
       "selection": {
         "start": {
-          "line": 9,
+          "line": 8,
           "character": 1
         },
         "end": {
@@ -339,7 +339,7 @@
       "file": "demo1-using-openapi/AheadOfTime/Program.cs",
       "selection": {
         "start": {
-          "line": 24,
+          "line": 21,
           "character": 1
         },
         "end": {
@@ -353,12 +353,12 @@
       "file": "demo1-using-openapi/AheadOfTime/Program.cs",
       "selection": {
         "start": {
-          "line": 33,
+          "line": 31,
           "character": 1
         },
         "end": {
-          "line": 42,
-          "character": 1
+          "line": 38,
+          "character": 2
         }
       },
       "description": "Finally, we need to provide a list of types that the project needs to source generate JSON serializer/deserializers for."
