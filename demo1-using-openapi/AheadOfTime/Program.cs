@@ -18,9 +18,6 @@ builder.Services.ConfigureHttpJsonOptions(options =>
     options.SerializerOptions.TypeInfoResolverChain.Insert(0, AppJsonSerializerContext.Default);
 });
 
-// Necessary for Scalar when using SlimBuilder for AOT: https://github.com/scalar/scalar/issues/4490
-builder.Services.Configure<RouteOptions>(options => options.SetParameterPolicy<RegexInlineRouteConstraint>("regex"));
-
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
