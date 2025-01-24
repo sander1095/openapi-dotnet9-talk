@@ -1,7 +1,7 @@
 # openapi-dotnet9-talk
-My demos for my OpenAPI in .NET 9 talk
+My demos for my OpenAPI in .NET 9 talk.
 
-
+Run `dotnet publish -r win-x64 /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true` to generate the pre-built assets
 
 
 | Demo                   | URL                    |
