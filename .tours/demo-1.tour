@@ -329,11 +329,11 @@
           "character": 1
         },
         "end": {
-          "line": 22,
-          "character": 118
+          "line": 19,
+          "character": 4
         }
       },
-      "description": "Next, we need to set up JSON serialization to use source generators instead of reflection. More on this later.\r\n\r\nBelow that, we'll see some configuration for Scalar in AOT mode. This issue has been fixed already, and I'm waiting for a package upgrade to get this code removed."
+      "description": "Next, we need to set up JSON serialization to use source generators instead of reflection. More on this later."
     },
     {
       "file": "demo1-using-openapi/AheadOfTime/Program.cs",
