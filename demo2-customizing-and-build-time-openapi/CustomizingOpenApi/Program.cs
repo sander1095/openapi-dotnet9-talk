@@ -1,11 +1,11 @@
 
 using CustomizingOpenApi;
-
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.UseUrls("http://localhost:5305");
 
 builder.Services.AddOpenApi(x =>
 {

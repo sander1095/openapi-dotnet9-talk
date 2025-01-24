@@ -1,14 +1,10 @@
 using System.Text.Json.Serialization;
-
 using AheadOfTime;
-
 using ApiModels;
-
-using Microsoft.AspNetCore.Routing.Constraints;
-
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateSlimBuilder(args);
+builder.WebHost.UseUrls("http://localhost:5303");
 
 // In AOT projects, Reflection has quite limited support:
 _ = System.Reflection.Assembly.GetExecutingAssembly().GetTypes();

@@ -11,7 +11,7 @@
       "file": "demo1-using-openapi/OpenApiInDotnet8/Program.cs",
       "selection": {
         "start": {
-          "line": 8,
+          "line": 7,
           "character": 1
         },
         "end": {
@@ -233,7 +233,7 @@
     },
     {
       "file": "demo1-using-openapi/ControllersDotnet9/Program.cs",
-      "description": "Let's go and run this demo and take a quick look at Scalar!\r\n\r\n**DO**\r\n\r\n- Visit `openapi/v1.json` for the OpenAPI endpoint.\r\n  - This is different compared to SwaggerUI, which was `swagger/v1/swagger.json`\r\n- Visit `/scalar` and show off the UI, API client code and test a request.",
+      "description": "Let's go and run this demo and take a quick look at Scalar!\r\n\r\n**DO**\r\n\r\n- Visit http://localhost:5301/openapi/v1.json for the OpenAPI endpoint.\r\n  - This is different compared to SwaggerUI, which was `swagger/v1/swagger.json`\r\n- Visit http://localhost:5301/scalar and show off the UI, API client code and test a request.",
       "line": 24,
       "selection": {
         "start": {
@@ -311,11 +311,11 @@
       "file": "demo1-using-openapi/AheadOfTime/Program.cs",
       "selection": {
         "start": {
-          "line": 11,
+          "line": 6,
           "character": 1
         },
         "end": {
-          "line": 14,
+          "line": 10,
           "character": 46
         }
       },
@@ -325,11 +325,11 @@
       "file": "demo1-using-openapi/AheadOfTime/Program.cs",
       "selection": {
         "start": {
-          "line": 16,
+          "line": 12,
           "character": 1
         },
         "end": {
-          "line": 19,
+          "line": 15,
           "character": 4
         }
       },
@@ -339,11 +339,11 @@
       "file": "demo1-using-openapi/AheadOfTime/Program.cs",
       "selection": {
         "start": {
-          "line": 21,
+          "line": 17,
           "character": 1
         },
         "end": {
-          "line": 30,
+          "line": 25,
           "character": 24
         }
       },
@@ -353,7 +353,7 @@
       "file": "demo1-using-openapi/AheadOfTime/Program.cs",
       "selection": {
         "start": {
-          "line": 31,
+          "line": 27,
           "character": 1
         },
         "end": {
